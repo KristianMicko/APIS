@@ -44,7 +44,7 @@ function deliver_response($response){
 		504 => 'Gateway Timeout',
 		505 => 'HTTP Version Not Supported'
 		);
-  header("Access-Control-Allow-Origin: *");  
+  header("Access-Control-Allow-Origin: *");
 	// Set HTTP Response
 	header('HTTP/1.1 '.$response['status'].' '.$http_response_code[ $response['status'] ]);
 	// Set HTTP Response Content Type
@@ -67,26 +67,14 @@ array_shift($url_array); // 3rd = 'api'
 $action = $url_array[0];
 // get the method
 $method = $_SERVER['REQUEST_METHOD'];
-//include("pripojenie.php");
-//$miestnost = new Miestnost();
-//if ($method = 'GET') {
-$dbServername = '147.232.40.14:3306';
-$dbUsername = "km863qc";
-$password = "km863qc";
-$connect = mysqli_connect($dbServername,$dbUsername,$password,$dbUsername);
-$sql = "SELECT *FROM Miestnost";
-$result = mysqli_query($connect,$sql);
-$resultcheck = mysqli_num_rows($result);
-if ($resultcheck>0){
-    while ($row = mysqli_fetch_assoc($result)){
-        $data[]=$row;
-    }
-}
-//  $data = $miestnost->getData();
+include("pripojenie.php");
+$miestnost = new Miestnost();
+if ($method = 'GET') {
+  $data = $miestnost->getData();
   $response['status'] = 200;
   $response['data'] = $data;
-//}
-$connect->close();
+}
+
 deliver_response($response);
 
  ?>
