@@ -48,7 +48,7 @@ class Miestnost{
   }
 
   public function FunctionName($id,$label){
-    $sql = "Update Miestnost set label='".$label."' where id=".$id;
+    $sql = "UPDATE Miestnost set label='".$label."' where id=".$id;
     $result = mysqli_query($this->db,$sql);
     if($result){
 		    $data = 1;
