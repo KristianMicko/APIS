@@ -90,9 +90,10 @@ if ($method == 'GET') {
   if(isset($url_array[1])){
 			$idBarang = $url_array[1];
 			// check if idBarang exist in database
-			$response['status'] = 200;
-			$response['data'] = array('error' => 'Nieco');
-		}   
+      $json = file_get_contents('php://input');
+			$post = json_decode($json);
+      echo $post;
+		}
 }
 
 deliver_response($response);
