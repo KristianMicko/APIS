@@ -44,6 +44,8 @@ function deliver_response($response){
 		504 => 'Gateway Timeout',
 		505 => 'HTTP Version Not Supported'
 		);
+
+  header("Access-Control-Request-Method: PUT");
   header("Access-Control-Allow-Origin: *");
 	// Set HTTP Response
 	header('HTTP/1.1 '.$response['status'].' '.$http_response_code[ $response['status'] ]);
@@ -84,6 +86,13 @@ if ($method == 'GET') {
     $response['status'] = 400;
 		$response['data'] = array('error' => 'Neuspešné nahravanie');
   }
+}else if($method == 'PUT'){
+  if(isset($url_array[1])){
+			$idBarang = $url_array[1];
+			// check if idBarang exist in database
+			$response['status'] = 200;
+			$response['data'] = array('error' => 'Nieco');
+		}   
 }
 
 deliver_response($response);
