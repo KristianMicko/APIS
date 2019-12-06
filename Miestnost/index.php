@@ -63,8 +63,8 @@ $response['data'] = NULL;
 $url_array = explode('/', $_SERVER['REQUEST_URI']);
 array_shift($url_array); // remove first value as it's empty
 // remove 2nd and 3rd array, because it's directory
-array_shift($url_array); // 2nd = 'NativeREST'
-array_shift($url_array); // 3rd = 'api'
+//array_shift($url_array); // 2nd = 'NativeREST'
+//array_shift($url_array); // 3rd = 'api'
 // get the action (resource, collection)
 $action = $url_array[0];
 // get the method
