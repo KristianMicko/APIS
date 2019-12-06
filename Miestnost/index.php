@@ -72,13 +72,13 @@ $method = $_SERVER['REQUEST_METHOD'];
 include("pripojenie.php");
 $miestnost = new Miestnost();
 if ($method == 'GET') {
-  //if(!isset($url_array[1])){
+  if(!isset($url_array[1])){
     $data = $miestnost->getData();
     $response['status'] = 200;
     $response['data'] = $data;
 
 
-  /*}else{
+  }/*else{
       $id=$url_array[2];
 			$data=$miestnost->getDataById($id);
 			if(empty($data)) {
