@@ -69,10 +69,15 @@ $action = $url_array[0];
 $method = $_SERVER['REQUEST_METHOD'];
 include("pripojenie.php");
 $miestnost = new Miestnost();
-if ($method = 'GET') {
+if ($method == 'GET') {
   $data = $miestnost->getData();
   $response['status'] = 200;
   $response['data'] = $data;
+}else if($method == 'POST' ){
+  $json = $_POST['miestnost'];
+  $post = json_decode($json);
+  $response['status'] = 201;
+	$response['data'] = array('success' => 'Data úspešne uložené');
 }
 
 deliver_response($response);
