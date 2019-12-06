@@ -75,9 +75,15 @@ if ($method == 'GET') {
   $response['data'] = $data;
 }else if($method == 'POST' ){
   $json = $_POST['miestnost'];
-  $post = json_decode($json);
-  $response['status'] = 201;
-	$response['data'] = array('success' => 'Data úspešne uložené');
+  //$post = json_decode($json);
+  $status = $miestnost->createData($json);
+  if($status == 1){
+    $response['status'] = 201;
+    $response['data'] = array('success' => 'Data úspešne uložené');
+  }else{
+    $response['status'] = 400;
+		$response['data'] = array('error' => 'Neuspešné nahravanie');
+  }
 }
 
 deliver_response($response);
