@@ -78,10 +78,10 @@ if ($method == 'GET') {
     $response['data'] = $data;
   }else{
       $id=$url_array[1];
-			$data=$barang->getDataById($id);
+			$data=$miestnost->getDataById($id);
 			if(empty($data)) {
 				$response['status'] = 404;
-				$response['data'] = array('error' => 'Zaznam nenajdeny');	
+				$response['data'] = array('error' => 'Zaznam nenajdeny');
 			}else{
 				$response['status'] = 200;
 				$response['data'] = $data;
