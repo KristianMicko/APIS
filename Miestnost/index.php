@@ -81,7 +81,7 @@ if ($resultcheck>0){
         $data[]=$row;
     }
 }
-  $data = $miestnost->getData();
+//  $data = $miestnost->getData();
   $response['status'] = 200;
   $response['data'] = $data;
 //}
