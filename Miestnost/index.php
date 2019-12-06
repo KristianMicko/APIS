@@ -66,7 +66,7 @@ array_shift($url_array); // 3rd = 'api'
 $action = $url_array[0];
 // get the method
 $method = $_SERVER['REQUEST_METHOD'];
-require_once("pripojenie.php");
+include("pripojenie.php");
 $miestnost = new Miestnost();
 if ($method = 'GET') {
   $data = $miestnost->getData();
