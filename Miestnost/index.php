@@ -80,7 +80,7 @@ if ($method == 'GET') {
 
 
   }else{
-      $id=$url_array[0];
+      $id=$url_array[1];
 			$data=$miestnost->getDataById($id);
 			if(empty($data)) {
 				$response['status'] = 404;
