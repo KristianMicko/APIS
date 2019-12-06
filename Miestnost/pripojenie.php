@@ -47,7 +47,7 @@ class Miestnost{
     return $data;
   }
 
-  public function FunctionName($id,$label){
+  public function updateData($id,$label){
     $sql = "UPDATE Miestnost set label='".$label."' where id=".$id;
     $result = mysqli_query($this->db,$sql);
     if($result){

@@ -88,11 +88,11 @@ if ($method == 'GET') {
   }
 }else if($method == 'PUT'){
   if(isset($url_array[1])){
-			$idBarang = $url_array[1];
+			$id = $url_array[1];
 			// check if idBarang exist in database
       $json = file_get_contents('php://input');
 			$post = json_decode($json);
-      echo $post;
+      $miestnost->updateData($id,$post->data);
 		}
 }
 
