@@ -76,6 +76,8 @@ if ($method == 'GET') {
     $data = $miestnost->getData();
     $response['status'] = 200;
     $response['data'] = $data;
+
+    
   /*}else{
       $id=$url_array[2];
 			$data=$miestnost->getDataById($id);

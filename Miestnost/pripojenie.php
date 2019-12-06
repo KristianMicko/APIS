@@ -35,7 +35,7 @@ class Miestnost{
     return $data;
   }
 
-  public function getDataById($id){
+  /*public function getDataById($id){
     $sql = "SELECT *FROM Miestnost where id=".$id;
     $result = mysqli_query($this->db,$sql);
     $resultcheck = mysqli_num_rows($result);
@@ -45,7 +45,7 @@ class Miestnost{
         }
     }
     return $data;
-  }
+  }*/
 
   public function createData($value){
     $sql = "INSERT into Miestnost(label) values('".$value."')";
