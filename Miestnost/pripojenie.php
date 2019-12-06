@@ -7,7 +7,7 @@ $connect = mysqli_connect($dbServername,$dbUsername,$password,$dbUsername);
 //$connect->close();
 
 
-class Miestnost extends AnotherClass{
+class Miestnost{
 
   function __construct){
     $this->db = $this->getDB();
