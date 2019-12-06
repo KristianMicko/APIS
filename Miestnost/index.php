@@ -44,6 +44,7 @@ function deliver_response($response){
 		504 => 'Gateway Timeout',
 		505 => 'HTTP Version Not Supported'
 		);
+  header("Access-Control-Allow-Origin: *");  
 	// Set HTTP Response
 	header('HTTP/1.1 '.$response['status'].' '.$http_response_code[ $response['status'] ]);
 	// Set HTTP Response Content Type
