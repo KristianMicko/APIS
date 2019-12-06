@@ -92,7 +92,7 @@ if ($method == 'GET') {
 			// check if idBarang exist in database
       $json = file_get_contents('php://input');
 			$post = json_decode($json);
-      $miestnost->updateData($id,$post->data);
+      $miestnost->updateData($id,$post['data']);
 		}
 }
 
