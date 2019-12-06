@@ -79,7 +79,7 @@ if ($method == 'GET') {
     $response['data'] = $data;
 
 
-  }else{
+  /*}else{
       $id=$url_array[1];
 			$data=$miestnost->getDataById($id);
 			if(empty($data)) {
@@ -88,7 +88,7 @@ if ($method == 'GET') {
 			}else{
 				$response['status'] = 200;
 				$response['data'] = $data;
-  }
+  }*/
 }else if($method == 'POST' ){
   $json = $_POST['miestnost'];
   //$post = json_decode($json);
