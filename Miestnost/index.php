@@ -51,7 +51,7 @@ function deliver_response($response){
 	// Format data into a JSON response
 	$json_response = json_encode($response['data']);
 	// Deliver formatted data
-	echo $json_response;
+	print_r($json_response);
 	exit;
 }
 // Set default HTTP response of 'Not Found'
