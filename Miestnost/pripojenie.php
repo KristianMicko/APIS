@@ -27,10 +27,10 @@ class Miestnost extends AnotherClass{
     $resultcheck = mysqli_num_rows($result);
     if ($resultcheck>0){
         while ($row = mysqli_fetch_assoc($result)){
-            $jsondata[]=$row;
+            $data[]=$row;
         }
     }
-    return $jsondata;
+    return $data;
   }
 }
 
