@@ -26,6 +26,7 @@ class Miestnost{
             $data[]=$row;
         }
     }
+    $connect->close();
     return $data;
   }
 
@@ -42,6 +43,7 @@ class Miestnost{
     else{
 		    $data 0;
 	     }
+    $connect->close();   
     return $data;
   }
 }
