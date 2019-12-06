@@ -68,11 +68,11 @@ $action = $url_array[0];
 $method = $_SERVER['REQUEST_METHOD'];
 include("pripojenie.php");
 $miestnost = new Miestnost();
-if ($method = 'GET') {
+//if ($method = 'GET') {
   $data = $miestnost->getData();
   $response['status'] = 200;
   $response['data'] = $data;
-}
+//}
 
 deliver_response($response);
 
