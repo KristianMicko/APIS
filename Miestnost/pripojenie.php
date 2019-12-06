@@ -9,19 +9,15 @@ $connect = mysqli_connect($dbServername,$dbUsername,$password,$dbUsername);
 
 class Miestnost{
 
-  function __construct){
-    $this->db = $this->getDB();
-  }
 
-  private function getDB(){
+
+  
+
+  public function getData() {
     $dbServername = '147.232.40.14:3306';
     $dbUsername = "km863qc";
     $password = "km863qc";
     $connect = mysqli_connect($dbServername,$dbUsername,$password,$dbUsername);
-    return $connect;
-  }
-
-  public function getData() {
     $sql = "SELECT *FROM Miestnost";
     $result = mysqli_query($this->db,$sql);
     $resultcheck = mysqli_num_rows($result);
