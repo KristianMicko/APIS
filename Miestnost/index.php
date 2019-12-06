@@ -74,7 +74,7 @@ $miestnost = new Miestnost();
 if ($method == 'GET') {
   //if(!isset($url_array[1])){
     $data = $miestnost->getData();
-    $data = $url_array[1];
+    $data = $url_array[0];
     $response['status'] = 200;
     $response['data'] = $data;
 
