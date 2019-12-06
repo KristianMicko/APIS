@@ -39,10 +39,10 @@ class Miestnost{
     $sql = "INSERT into Miestnost(label) values('".$value."')";
     $result = mysqli_query($this->db,$sql);
     if($result){
-		    $data 1;
+		    $data = 1;
 	     }
     else{
-		    $data 0;
+		    $data = 0;
 	     }
     return $data;
   }
