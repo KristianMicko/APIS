@@ -64,7 +64,7 @@ $url_array = explode('/', $_SERVER['REQUEST_URI']);
 array_shift($url_array); // remove first value as it's empty
 // remove 2nd and 3rd array, because it's directory
 array_shift($url_array); // 2nd = 'NativeREST'
-//array_shift($url_array); // 3rd = 'api'
+array_shift($url_array); // 3rd = 'api'
 // get the action (resource, collection)
 $action = $url_array[0];
 // get the method
@@ -72,7 +72,7 @@ $method = $_SERVER['REQUEST_METHOD'];
 include("pripojenie.php");
 $miestnost = new Miestnost();
 if ($method == 'GET') {
-  if(!isset($url_array[0])){
+  if(!isset($url_array[1])){
     $data = $miestnost->getData();
     //$data = $url_array[0];
     $response['status'] = 200;
