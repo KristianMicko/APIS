@@ -74,7 +74,7 @@ $dbUsername = "km863qc";
 $password = "km863qc";
 $connect = mysqli_connect($dbServername,$dbUsername,$password,$dbUsername);
 $sql = "SELECT *FROM Miestnost";
-$result = mysqli_query($this->db,$sql);
+$result = mysqli_query($connect,$sql);
 $resultcheck = mysqli_num_rows($result);
 if ($resultcheck>0){
     while ($row = mysqli_fetch_assoc($result)){
@@ -85,7 +85,7 @@ if ($resultcheck>0){
   $response['status'] = 200;
   $response['data'] = $data;
 //}
-
+$connect->close();
 deliver_response($response);
 
  ?>
