@@ -72,15 +72,15 @@ $method = $_SERVER['REQUEST_METHOD'];
 include("pripojenie.php");
 $miestnost = new Miestnost();
 if ($method == 'GET') {
-  //if(!isset($url_array[1])){
+  if(!isset($url_array[0])){
     $data = $miestnost->getData();
-    $data = $url_array[0];
+    //$data = $url_array[0];
     $response['status'] = 200;
     $response['data'] = $data;
 
 
-  /*}else{
-      $id=$url_array[1];
+  }else{
+      $id=$url_array[0];
 			$data=$miestnost->getDataById($id);
 			if(empty($data)) {
 				$response['status'] = 404;
@@ -88,7 +88,7 @@ if ($method == 'GET') {
 			}else{
 				$response['status'] = 200;
 				$response['data'] = $data;
-  }*/
+  }
 }else if($method == 'POST' ){
   $json = $_POST['miestnost'];
   //$post = json_decode($json);
