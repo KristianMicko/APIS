@@ -90,9 +90,29 @@ if ($method == 'GET') {
   if(isset($url_array[1])){
 			$id = $url_array[1];
 			// check if idBarang exist in database
-      $json = file_get_contents('php://input');
-			$post = json_decode($json);
-      $miestnost->updateData($id,$post['data']);
+			$data=$miestnost->getDataById($id);
+			if(empty($data)) {
+				$response['status'] = 404;
+				$response['data'] = array('error' => 'Chyba zapisu');
+			}else{
+				// get post from client
+				$json = file_get_contents('php://input');
+				$post = json_decode($json); // decode to object
+				// check input completeness
+				if($post->miestnost==""){
+					$response['status'] = 400;
+					$response['data'] = array('error' => 'Chyba zapisu');
+				}else{
+					$status = $barang->updateData($id, $post->miestnost);
+					if($status==1){
+						$response['status'] = 200;
+						$response['data'] = array('success' => 'Uspešne upravené');
+					}else{
+						$response['status'] = 400;
+						$response['data'] = array('error' => 'Chyba zapisu');
+					}
+				}
+			}
 		}
 }
 

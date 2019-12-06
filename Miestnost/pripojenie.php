@@ -35,6 +35,18 @@ class Miestnost{
     return $data;
   }
 
+  public function getDataById($id){
+    $sql = "SELECT *FROM Miestnost where id=".$id;
+    $result = mysqli_query($this->db,$sql);
+    $resultcheck = mysqli_num_rows($result);
+    if ($resultcheck>0){
+        while ($row = mysqli_fetch_assoc($result)){
+            $data[]=$row;
+        }
+    }
+    return $data;
+  }
+
   public function createData($value){
     $sql = "INSERT into Miestnost(label) values('".$value."')";
     $result = mysqli_query($this->db,$sql);
