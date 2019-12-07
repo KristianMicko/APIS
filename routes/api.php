@@ -34,7 +34,7 @@ Route::get('/Miestnost/{id}', function ($id){
 
 });
 
-Route::post('/Miestnost/',function (Request $request){
+Route::post('/Miestnost',function (Request $request){
     DB::insert("INSERT into Miestnost(label) values(?)",[$request['label']]);
     return response()->json("Nahravka bola uspesne vytvorena ",201);
 });
