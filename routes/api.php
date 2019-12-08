@@ -188,3 +188,28 @@ Route::delete('/Vlastnost/{id}', function ($id){
     DB::delete("DELETE FROM Vlastnost where id=?",[$id]);
     return response()->json("Nahravka bola uspesne vymazana",204);
 });
+
+Route::get('/Pouzivatelia', function (){
+    $value= DB::select("SELECT *FROM Users");
+    return response()->json($value,200);
+});
+
+Route::get('/Pouzivatelia/{id}',function ($id){
+    $value = DB::select("SELECT *FROM Users where id=?",[$id]);
+    return response()->json($value,200);
+});
+
+Route::post('/Pouzivatelia', function (Request $request){
+    DB::insert("INSERT INTO Users(name,password) values (?,?)",[$request['meno'],$request['heslo']]);
+    return response()->json("Nahravka bola uspesne vytvorena", 201);
+});
+
+Route::put('/Pouzivatelia/{id}', function ($id, Request $request){
+    DB::update("UPDATE Users set name=?,password=? where id=?",[$request['meno'],$request['heslo'],$id]);
+    return response()->json("Nahravka bola uspesne prepisana", 200);
+});
+
+Route::delete('/Pouzivatelia/{id}', function ($id){
+    DB::delete("DELETE FROM Users where id=?",[$id]);
+    return response()->json("Nahravka bola uspesne vymazana",204);
+});
