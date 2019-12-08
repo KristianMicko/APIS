@@ -34,13 +34,13 @@ Route::get('/Miestnost/{id}', function ($id){
 
 });
 
-Route::post('/Miestnost',function (Request $request){
+Route::post('/Miestnost/',function (Request $request){
     DB::insert("INSERT into Miestnost(label) values(?)",[$request['label']]);
     return response()->json("Nahravka bola uspesne vytvorena ",201);
 });
 
 Route::put('/Miestnost/{id}', function ($id,Request $request){
-    $value = DB::update("UPDATE Miestnost set label=? where id= ?",[$request['label'],$id]);
+    DB::update("UPDATE Miestnost set label=? where id= ?",[$request['label'],$id]);
     return response()->json("Nahravka bola uspesne prepisana",200);
 });
 
@@ -48,7 +48,6 @@ Route::delete('/Miestnost/{id}', function ($id){
     DB::delete("DELETE FROM Miestnost where id=?", [$id]);
     return response()->json("Nahravka bola uspesne vymazana",204);
 });
-
 
 Route::get('/Regal',function (){
     $value=DB::select("SELECT *FROM Regal");
@@ -72,5 +71,111 @@ Route::put('/Regal/{id}',function ($id,Request $request){
 
 Route::delete('/Regal/{id}',function ($id){
     DB::delete("DELETE FROM Regal where id=?",[$id]);
+    return response()->json("Nahravka bola uspesne vymazana",204);
+});
+
+
+Route::get('/Miesto',function (){
+    $value = DB::select("SELECT *FROM Miesto");
+    return response()->json($value,200);
+});
+
+Route::get('/Miesto/{id}',function ($id){
+    $value = DB::select("SELECT *FROM Miesto where id = ?",[$id]);
+    return response()->json($value,200);
+});
+
+Route::post('/Miesto',function (Request $request){
+    DB::insert("INSERT INTO Miesto (label, id_regal) values (?,?)",[$request['miesto'],$request['idRegal']]);
+    return response()->json("Nahravka bola uspesne vytvorena",201);
+});
+
+Route::put('/Miesto/{id}', function ($id,Request $request){
+    DB::update("UPDATE Miesto set label=?, id_regal=? where id=?",[$request['miesto'],$request['idRegal'],$id]);
+    return response()->json("Nahravka bola uspesne prepisana",200);
+});
+
+Route::delete('/Miesto/{id}', function ($id){
+    DB::delete("DELETE FROM Miesto where id=?",[$id]);
+    return response()->json("Nahravka bola uspesne vymazana",204);
+});
+
+Route::get('/Polozka',function (){
+    $value = DB::select("SELECT *FROM Polozka");
+    return response()->json($value,200);
+});
+
+Route::get('/Polozka/{id}', function ($id){
+    $value = DB::select("SELECT *FROM Polozka where id=?",[$id]);
+    return response()->json($value,200);
+});
+
+Route::post('/Polozka',function (Request $request){
+    DB::insert("INSERT INTO Polozka(nazov,nakupna_cena,predajna_cena,balenie,mnozstvo,id_miesto,pridana) values(?,?,?,?,?,?,?)",[$request['nazov'],$request['nakupnaCena'],$request['predajnaCena'],
+        $request['balenie'],$request['mnozstvo'],$request['idMiesto'],$request['pridana']]);
+    return response()->json("Nahravka bola uspesne vytvorena",201);
+});
+
+Route::put("/Polozka/{id}",function ($id,Request $request){
+    DB::update("UPDATE Polozka set nazov=?,nakupna_cena=?,predajna_cena=?,balenie=?,mnozstvo=?,id_miesto=?,pridana=? where id =?",
+        [$request['nazov'],$request['nakupnaCena'],$request['predajnaCena'],
+            $request['balenie'],$request['mnozstvo'],$request['idMiesto'],$request['pridana'],$id]);
+    return response()->json("Nahravka bola uspesne prepisana", 200);
+});
+
+Route::delete('/Polozka/{id}', function ($id){
+    DB::delete("DELETE FROM Polozka where id=?", [$id]);
+    return response()->json("Nahravka bola uspesne vymazana", 204);
+});
+
+Route::get('/Transakcie',function (){
+    $value = DB::select("SELECT *FROM Transakcie");
+    return response()->json($value,200);
+});
+
+Route::get('/Transakcie/{id}', function ($id){
+    $value = DB::select("SELECT *FROM Transakcie where id=?",$id);
+    return response()->json($value,200);
+});
+
+Route::post('/Transakcie', function (Request $request){
+    DB::insert("INSERT INTO Transakcie(mnozstvo,typ,id_polozka,datum) values (?,?,?,?)", [$request['mnozstvo'],$request['typ'],
+        $request['idPolozka'],$request['datum']]);
+    return response()->json("Nahravka bola uspesne vytvorena",201);
+});
+
+Route::put('/Transakcie/{id}', function ($id,Request $request){
+    DB::update("UPDATE Transakcie set mnozstvo=?,typ=?,id_polozka=?, datum=? where id=?",[$request['mnozstvo'],$request['typ'],
+        $request['idPolozka'],$request['datum']]);
+    return response()->json("Nahravka bola uspesne prepisana",200);
+});
+
+Route::delete('/Transakcie/{id}',function ($id){
+    DB::delete("DELETE FROM Transakcie where id=?",[$id]);
+    return response()->json("Nahravka bola uspesne vymazana",204);
+});
+
+Route::get('/Vlastnost', function (){
+    $value = DB::select("SELECT *FROM Vlastnost");
+    return response()->json($value, 200);
+});
+
+Route::get('/Vlastnost/{id}',function ($id){
+    $value = DB::select("SELECT *FROM Vlastnost where id=?",[$id]);
+    return response()->json($value,200);
+});
+
+Route::post('/Vlastnost',function (Request $request){
+    DB::insert("INSERT INTO Vlastnost(nazov,popis,id_polozka) values (?,?,?)",[$request['nazov'],$request['popis'],$request['idPolozka']]);
+    return response()->json("Nahravka bola uspesne vytvorena",201);
+});
+
+Route::put('/Vlastnost/{id}', function ($id,Request $request){
+    DB::update("UPDATE Vlastnost set nazov=?,popis=?,id_polozka=? where id=?",[$request['nazov'],$request['popis'],$request['idPolozka'],$id]);
+    return response()->json("Nahravka bola uspesne prepisana",200);
+});
+
+Route::delete('/Vlastnost/{id}', function ($id){
+    DB::delete("DELETE FROM Vlastnost where id=?",[$id]);
     return response()->json("Nahravka bola uspesne vymazana",204);
 });
