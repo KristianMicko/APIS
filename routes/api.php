@@ -22,6 +22,11 @@ Route::get('/vsetkyPolozky',function (){
     return response()->json($value,200);
 });
 
+Route::get('/vsetkyTransakcie',function (){
+    $value = DB::select("SELECT Transakcie.id as id_transakcie, Transakcie.mnozstvo as transakcie_mnozstvo, Transakcie.typ as transakcie_typ, Transakcie.datum as datum_transakcie, Polozka.id as id_polozka, Polozka.nazov as nazov, Polozka.nakupna_cena as nakupna_cena, Polozka.predajna_cena as predajna_cena, Polozka.balenie as balenie, Polozka.mnozstvo as polozka_mnozstvo, Polozka.id_miesto as id_miesto, Polozka.pridana as datum_pridania_polozky FROM Transakcie inner JOIN Polozka on Transakcie.id_polozka=Polozka.id");
+    return response()->json($value,200);
+});
+
 Route::get('/skuska', function (){
     $value = DB::select("SELECT Miestnost.id as ID, Miestnost.label as Miestnosti, Regal.label as Regale, Miesto.label as Miesta, Polozka.nazov as Polozka, Polozka.nakupna_cena as Nakupna_cena, Polozka.predajna_cena as Predajna_cena, Polozka.balenie as Balenie, Polozka.mnozstvo as Mnozstvo,Vlastnost.nazov as Vlastnosti, Vlastnost.popis as Popis from Miestnost inner JOIN Regal on Miestnost.id = Regal.id_miestnost inner join Miesto on Regal.id = Miesto.id_regal inner join Polozka on Miesto.id = Polozka.id_miesto left join Vlastnost on Vlastnost.id_polozka = Polozka.id");
     return response()->json($value,200);
