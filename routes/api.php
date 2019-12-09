@@ -120,15 +120,15 @@ Route::get('/Polozka/{id}', function ($id){
 });
 
 Route::post('/Polozka',function (Request $request){
-    DB::insert("INSERT INTO Polozka(nazov,nakupna_cena,predajna_cena,balenie,mnozstvo,id_miesto,pridana) values(?,?,?,?,?,?,?)",[$request['nazov'],$request['nakupnaCena'],$request['predajnaCena'],
-        $request['balenie'],$request['mnozstvo'],$request['id_miesto'],$request['pridana']]);
+    DB::insert("INSERT INTO Polozka(nazov,nakupna_cena,predajna_cena,balenie,mnozstvo,id_miesto) values(?,?,?,?,?,?)",[$request['nazov'],$request['nakupna_cena'],$request['predajna_cena'],
+        $request['balenie'],$request['mnozstvo'],$request['id_miesto']]);
     return response()->json("Nahravka bola uspesne vytvorena",201);
 });
 
 Route::put("/Polozka/{id}",function ($id,Request $request){
-    DB::update("UPDATE Polozka set nazov=?,nakupna_cena=?,predajna_cena=?,balenie=?,mnozstvo=?,id_miesto=?,pridana=? where id =?",
-        [$request['nazov'],$request['nakupnaCena'],$request['predajnaCena'],
-            $request['balenie'],$request['mnozstvo'],$request['id_miesto'],$request['pridana'],$id]);
+    DB::update("UPDATE Polozka set nazov=?,nakupna_cena=?,predajna_cena=?,balenie=?,mnozstvo=?,id_miesto=? where id =?",
+        [$request['nazov'],$request['nakupna_cena'],$request['predajna_cena'],
+            $request['balenie'],$request['mnozstvo'],$request['id_miesto'],$id]);
     return response()->json("Nahravka bola uspesne prepisana", 200);
 });
 
@@ -148,14 +148,14 @@ Route::get('/Transakcie/{id}', function ($id){
 });
 
 Route::post('/Transakcie', function (Request $request){
-    DB::insert("INSERT INTO Transakcie(mnozstvo,typ,id_polozka,datum) values (?,?,?,?)", [$request['mnozstvo'],$request['typ'],
-        $request['id_polozka'],$request['datum']]);
+    DB::insert("INSERT INTO Transakcie(mnozstvo,typ,id_polozka) values (?,?,?)", [$request['mnozstvo'],$request['typ'],
+        $request['id_polozka']]);
     return response()->json("Nahravka bola uspesne vytvorena",201);
 });
 
 Route::put('/Transakcie/{id}', function ($id,Request $request){
-    DB::update("UPDATE Transakcie set mnozstvo=?,typ=?,id_polozka=?, datum=? where id=?",[$request['mnozstvo'],$request['typ'],
-        $request['id_polozka'],$request['datum']]);
+    DB::update("UPDATE Transakcie set mnozstvo=?,typ=?,id_polozka=? where id=?",[$request['mnozstvo'],$request['typ'],
+        $request['id_polozka']]);
     return response()->json("Nahravka bola uspesne prepisana",200);
 });
 
