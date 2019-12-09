@@ -200,12 +200,12 @@ Route::get('/Pouzivatelia/{id}',function ($id){
 });
 
 Route::post('/Pouzivatelia', function (Request $request){
-    DB::insert("INSERT INTO Users(name,password) values (?,?)",[$request['meno'],$request['heslo']]);
+    DB::insert("INSERT INTO Users(name,password) values (?,?)",[$request['name'],$request['password']]);
     return response()->json("Nahravka bola uspesne vytvorena", 201);
 });
 
 Route::put('/Pouzivatelia/{id}', function ($id, Request $request){
-    DB::update("UPDATE Users set name=?,password=? where id=?",[$request['meno'],$request['heslo'],$id]);
+    DB::update("UPDATE Users set name=?,password=? where id=?",[$request['name'],$request['password'],$id]);
     return response()->json("Nahravka bola uspesne prepisana", 200);
 });
 
