@@ -215,7 +215,7 @@ Route::delete('/Pouzivatelia/{id}', function ($id){
 });
 
 
-Route::get('/ApisSkuska/',function (){
-    $value = DB::select("SELECT *FROM Users");
-    return response()->json($value,200);
+Route::get('/ApisSkuska/',function (Request $request){
+    $value = DB::insert("INSERT INTO APIS ( Meno,Priezvisko,Heslo)VALUES (?,?,?)", [$request['meno'],$request['priezvisko'],$request['heslo']]);
+    return response()->json("Nahravka bola uspesne vytvorena",200);
 });
