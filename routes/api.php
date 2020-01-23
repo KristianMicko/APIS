@@ -213,3 +213,9 @@ Route::delete('/Pouzivatelia/{id}', function ($id){
     DB::delete("DELETE FROM Users where id=?",[$id]);
     return response()->json("Nahravka bola uspesne vymazana",204);
 });
+
+
+Route::get('/ApisSkuska/',function ($id){
+    $value = DB::select("SELECT *FROM Users where id=?",[$id]);
+    return response()->json($value,200);
+});
