@@ -215,7 +215,7 @@ Route::delete('/Pouzivatelia/{id}', function ($id){
 });
 
 
-Route::get('/ApisSkuska/',function ($id){
-    $value = DB::select("SELECT *FROM Users where id=?",[$id]);
+Route::get('/ApisSkuska/',function (){
+    $value = DB::select("SELECT *FROM Users");
     return response()->json($value,200);
 });
